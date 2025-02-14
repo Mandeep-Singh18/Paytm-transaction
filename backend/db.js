@@ -1,7 +1,17 @@
 const mongoose = require('mongoose');
 const { number } = require('zod');
+require('dotenv').config();
 
-mongoose.connect("mongodb+srv://mandeep:IohOFa3hYeqZMyzU@personaluse.uzcky.mongodb.net/paytm");
+const mongoURI = process.env.MONGODB_URI;
+
+mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.log(err));
 
         
 // backend/db.js
